@@ -1,0 +1,18 @@
+version: "3.5"
+
+services:
+    test_nginx:
+        container_name: test_nginx
+        image: nginx:1.13
+        privileged: true
+        restart: always
+        networks:
+            - test_network
+        ports:
+            - 80:80
+        environment:
+            - TZ=Asia/Shanghai
+            
+networks:
+    test_network:
+        name: test_network
