@@ -49,6 +49,12 @@ server {
     location / {
         root   /var/{{project_name}}/{{prod_site_name}}/www;
         index  index.html index.htm index.php;
+	
+	if (!-e $request_filename) {
+            rewrite  ^(.*)$  /index.php?s=$1  last;
+            break;
+        }
+
     }
     error_page   500 502 503 504  /50x.html;
     location = /50x.html {
